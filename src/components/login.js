@@ -1,8 +1,38 @@
+import { Redirect } from 'react-router';
 import React, { Component } from "react";
 import UserDataService from "../services/userService";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Employer from "../Employer";
 
+var data = {
+    email: null,
+    password: null,
+    userID: null,
+    firstName: null,
+    lastName: null,
+    isFrozen: 0,
+    userType: null
+}
+
+var redirectSubmit = false;
 
 export default class Login extends Component {
+
+//     constructor() {
+//         super();
+//         this.state = {
+//           userId: null,
+//           userType: '',
+//           email: '',
+//           membership: '',
+//           password: '',
+//           accountBalance: '',
+//           firstName: '',
+//           lastName: '',
+//           accountStatus: '',
+//           isFrozen: false
+//         };
+//   }
 
     onChange = (e) => {
         /*
@@ -18,47 +48,84 @@ export default class Login extends Component {
       // get our form data out of state
       // const { fName, lName, email, password } = this.state;
       
-      this.setState({redirect: true});
+      //this.setState({redirect: true});
+
+      redirectSubmit = true;
 
       var data = {
-          email: this.state.email,
-          password: this.state.password,
-          userID: null,
-          firstName: null,
-          lastName: null,
-          isFrozen: 0,
-          userType: null
-
+        email: this.state.email,
+        password: this.state.password,
       }
+
+
       var user;
-      UserDataService.verifyUser(data.email, data.password)
+      UserDataService.verifyUser(this.state.email, this.state.password)
           .then(response => {
-            user = response.data;
-            console.log(user);
-            data = {
-                email: user.email,
-                password: user.password,
-                userID: user.userID,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                isFrozen: user.isFrozen,
-                userType: user.userType
-            }
+            //user = response.data[0];
+            console.log("fucking response date piece of shit: "+response.data[0].userType)
+            localStorage.setItem('currentUser',JSON.stringify(response.data[0]));
+            console.log("localStorage userId before is "+(JSON.parse(localStorage.getItem('currentUser'))).userType);
+            this.setState({
+                userType: response.data[0].userType,
+                
+            });
+
+            
+            //console.log("reponse data is "+user.userType);
+            // data = {
+            //     userID: user.userID,
+            //     firstName: user.firstName,
+            //     lastName: user.lastName,
+            //     isFrozen: user.isFrozen,
+            //     userType: user.userType
+            // }
           })
           .catch(e => {
             console.log(e);
           });
-          console.log(data);
-        // var {usersArray} = this.state;
 
+          
+
+          //this.forceUpdate()
     }
 
     render() {
 
-        // if (this.state.redirect) {
-        //     if(data.userType == "employer")
-        //      return <Redirect push to="/Employer" />;
-        //   }
+        localStorage.setItem('isLoggedIn',false);
+
+        if (redirectSubmit) {
+            //console.log("the data userID is " + this.state.userID);
+
+            //localStorage.setItem('currentUser',this.state.userID);
+
+            console.log("localStorage userId is "+localStorage.getItem('currentUser').userID);
+
+            if ((JSON.parse(localStorage.getItem('currentUser'))).userType == "employer") {
+                // return (<Switch>
+                //     <Route path="/Employer" component={Employer}>
+                //         <Employer />
+                //     </Route>
+                // </Switch>);
+
+                return <Redirect to="/employer"/>;
+
+            }
+
+            if ((JSON.parse(localStorage.getItem('currentUser'))).userType == "employee") {
+            
+                return <Redirect to="/employee"/>;
+
+            }
+
+            if ((JSON.parse(localStorage.getItem('currentUser'))).userType == "admin") {
+            
+                return <Redirect to="/admin"/>;
+
+            }
+
+            localStorage.setItem('isLoggedIn',true);
+
+        }
 
         return (
             <form onSubmit={this.onSubmit.bind(this)}>
