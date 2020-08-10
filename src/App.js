@@ -17,9 +17,10 @@ import Admin from "./Admin";
 
 //localStorage.setItem('isLoggedIn',false);
 
-
+//console.log("isLoggedin inside app.js (beginning)"+localStorage.getItem('isLoggedIn'))
 function App() {
   return (
+
     <div className="App">
       <header className="App-header">
       
@@ -29,6 +30,8 @@ function App() {
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
+
+          {console.log("isLoggedin inside app.js"+localStorage.getItem('isLoggedIn'))}
 
         {localStorage.getItem('isLoggedIn') ? (
 
@@ -43,7 +46,13 @@ function App() {
             </ul>
           </div>
           ) : (
-            <div></div>
+            <div>
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/logout"}>Logout</Link>
+                </li>
+              </ul>
+            </div>
           )
         }
         </div>

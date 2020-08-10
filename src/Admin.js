@@ -16,6 +16,7 @@ function Admin() {
     <div className="App">
       <header className="App-header">
       <Router>
+      <div>Logged in as [{(JSON.parse(localStorage.getItem('currentUser'))).firstName +" "+(JSON.parse(localStorage.getItem('currentUser'))).lastName}]</div>
         <div>
           <nav className="navbar-navbar-expand-navbar-dark-bg-dark">
             <a href="/user" className="navbar-brand">

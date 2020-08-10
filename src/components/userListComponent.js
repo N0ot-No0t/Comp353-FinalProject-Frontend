@@ -118,6 +118,7 @@ export default class UsersList extends Component {
           <ul className="list-group">
             {users &&
               users.map((user, index) => (
+
                 <li id="job-box"
                   className={
                     "list-group-item " +
@@ -128,6 +129,8 @@ export default class UsersList extends Component {
                 >
                   {user.firstName + " " +user.lastName}
                 </li>
+
+                
               ))}
           </ul>
 

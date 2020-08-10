@@ -100,6 +100,10 @@ export default class Login extends Component {
 
             console.log("localStorage userId is "+localStorage.getItem('currentUser').userID);
 
+            localStorage.setItem('isLoggedIn',true);
+
+            console.log("isLoggedIn inside login.js"+ localStorage.getItem('isLoggedIn'))
+
             if ((JSON.parse(localStorage.getItem('currentUser'))).userType == "employer") {
                 // return (<Switch>
                 //     <Route path="/Employer" component={Employer}>
@@ -123,7 +127,6 @@ export default class Login extends Component {
 
             }
 
-            localStorage.setItem('isLoggedIn',true);
 
         }
 
