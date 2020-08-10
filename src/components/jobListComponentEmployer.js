@@ -25,7 +25,7 @@ export default class JobsList extends Component {
   }
 
   componentDidMount() {
-    this.retrieveJobsByUser(/* INSERT USER ID FROM FILE HERE */6);
+    this.retrieveJobsByUser((JSON.parse(localStorage.getItem('currentUser'))).userID);
   }
 
   onChangeSearchTitle(e) {
