@@ -14,6 +14,9 @@ export default class JobsList extends Component {
     this.searchTitle = this.searchTitle.bind(this);
 
     this.state = {
+      jobIDs: [],
+      posts: [],
+      tempJob: null,
       jobs: [],
       currentJob: null,
       currentIndex: -1,
@@ -22,7 +25,7 @@ export default class JobsList extends Component {
   }
 
   componentDidMount() {
-    this.retrieveJobs();
+    this.retrieveJobsByUser(/* INSERT USER ID FROM FILE HERE */6);
   }
 
   onChangeSearchTitle(e) {
@@ -40,6 +43,33 @@ export default class JobsList extends Component {
           jobs: response.data
         });
         console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  retrieveJobsByUser(userID) {
+    JobDataService.findJobByUser(userID)
+      .then(response => {
+        this.setState({
+          posts: response.data
+        });
+        console.log(response.data);
+       
+        for (const[i, post] of this.state.posts.entries()) {
+          this.state.jobIDs[i] = post.jobID;
+        }
+        console.log(this.state.jobIDs);
+        var jobs = [];
+        for (const[i, id] of this.state.jobIDs.entries()) {
+          JobDataService.findJobByID(id)
+            .then(response => {
+              this.state.jobs[i] = response.data;
+            })
+        }
+        this.state.jobs = jobs;
+        console.log(this.state.jobs);
       })
       .catch(e => {
         console.log(e);
@@ -86,11 +116,11 @@ export default class JobsList extends Component {
   }
 
   render() {
-    const { searchTitle, jobs, currentJob, currentIndex } = this.state;
+    const { searchTitle,jobIDs, jobs, currentJob, currentIndex } = this.state;
 
     return (
       <div className="list row">
-        <div className="col-md-8">
+        {/* <div className="col-md-8">
           <div className="input-group mb-3">
             <input
               type="text"
@@ -109,7 +139,7 @@ export default class JobsList extends Component {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="col-md-6">
           <h4>Jobs List</h4>
 

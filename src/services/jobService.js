@@ -28,6 +28,14 @@ class JobDataService {
   findByTitle(title) {
     return http.get(`/job?title=${title}`);
   }
+
+  findJobByUser(userID) {
+    return http.get(`/posts/findJobsByUser/${userID}`);
+  }
+
+  findJobByID(jobID) {
+    return http.get(`/job/${jobID}`);
+  }
 }
 
 export default new JobDataService();
