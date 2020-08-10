@@ -85,10 +85,6 @@ export default class SignUp extends Component {
       submitted: false
     });
   }
-    
-  visitPage() {
-    window.location='hhttp://localhost:3311/sign-in'
-  }
 
     render() {
 
@@ -126,7 +122,7 @@ export default class SignUp extends Component {
                   <label>Membership</label>
                   <select id="membership" name="membership" className="form-control" onChange={this.onChange}>
 
-                    <option defaultValue="none" disabled hidden>Please choose a membership</option>
+                    <option value="none" selected disabled hidden>Please choose a membership</option>
 
                     <option value="basic">Basic</option>
                     <option value="prime">Prime</option>
@@ -135,10 +131,10 @@ export default class SignUp extends Component {
                 </div>
                   
                 <div className="form-group">
-                  <label>Membership</label>
+                  <label>User type</label>
                   <select id="userType" name="userType" className="form-control" onChange={this.onChange}>
 
-                    <option defaultValue="none" disabled hidden>Choose your account type</option>
+                    <option value="none" selected disabled hidden>Choose your user type</option>
 
                     <option value="employee">Employee</option>
                     <option value="employer">Employer</option>

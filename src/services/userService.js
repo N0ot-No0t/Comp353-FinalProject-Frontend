@@ -35,6 +35,9 @@ class UserDataService {
   }
 
   verifyUser(email, password){
+
+    //console.log(http.get(`/user/auth/${email}/${password}`));
+
     return http.get(`/user/auth/${email}/${password}`);
   }
 

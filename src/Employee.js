@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Job from "./components/jobComponentEmployee";
 import jobList from "./components/jobListComponentEmployee";
 
-function User() {
+function Employee() {
   return (
     
     <div className="App">
@@ -41,4 +41,4 @@ function User() {
   );
 }
 
-export default User;
+export default Employee;

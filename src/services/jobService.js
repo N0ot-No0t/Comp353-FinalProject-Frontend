@@ -10,7 +10,7 @@ class JobDataService {
   }
 
   create(data) {
-    return http.post("/job", data);
+    return http.post(`/job/${(JSON.parse(localStorage.getItem('currentUser'))).userID}`, data);
   }
 
   update(id, data) {
