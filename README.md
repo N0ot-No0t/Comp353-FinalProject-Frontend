@@ -1,4 +1,4 @@
-The backend part of this project can be found [here](https://github.com/davidthai0387/COMP353_FinalProject_Backend).
+The backend part of this project can be found [here](https://github.com/Talos10/COMP353_FinalProject_Backend).
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
