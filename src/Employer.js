@@ -29,12 +29,12 @@ function Employer() {
             <div className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link to={"/job"} className="nav-link">
-                  Jobs
+                  View your posted jobs
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to={"/add"} className="nav-link">
-                  Add
+                  Add jobs
                 </Link>
               </li>
             </div>
